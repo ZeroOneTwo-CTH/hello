@@ -1,0 +1,159 @@
+@import url('https://fonts.googleapis.com/css2?family=DIN+2014:wght@400;500;600;700;800&family=Barlow:wght@400;500;600;700;800&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --accent-color: #FF4D2E;
+    --background: 0 0% 4.7%;
+    --foreground: 0 0% 96.5%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  html {
+    scroll-behavior: auto;
+  }
+  body {
+    @apply bg-[#0B0B0C] text-[#F6F6F6] antialiased;
+    font-family: 'Inter', sans-serif;
+  }
+}
+
+/* Display Font - DIN 2014 or closest alternative (Barlow) */
+.font-display {
+  font-family: 'DIN 2014', 'Barlow', 'Sora', 'Helvetica Neue', 'Arial', sans-serif;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+}
+
+/* Fallback for systems without DIN 2014 */
+@supports not (font-family: 'DIN 2014') {
+  .font-display {
+    font-family: 'Barlow', 'Helvetica Neue', 'Arial', sans-serif;
+    font-weight: 600;
+    letter-spacing: -0.02em;
+  }
+}
+
+.font-mono {
+  font-family: 'IBM Plex Mono', monospace;
+}
+
+/* Grain overlay - simplified for performance */
+.grain-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 9999;
+  opacity: 0.05;
+  mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* Image frame border */
+.image-frame {
+  border: 2px solid rgba(246, 246, 246, 0.85);
+}
+
+.image-frame-dark {
+  border: 2px solid rgba(11, 11, 12, 0.85);
+}
+
+/* Section base */
+.section-pinned {
+  width: 100vw;
+  height: 100vh;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Button styles with dynamic accent color */
+.btn-coral {
+  background-color: var(--accent-color);
+  color: white;
+  padding: 0.75rem 1.5rem;
+  border-radius: 999px;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+.btn-coral:hover {
+  transform: translateY(-2px);
+  opacity: 0.9;
+}
+
+/* Link underline animation */
+.link-underline {
+  position: relative;
+}
+
+.link-underline::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 100%;
+  height: 1px;
+  background-color: currentColor;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.3s ease;
+}
+
+.link-underline:hover::after {
+  transform: scaleX(1);
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: #0B0B0C;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #333;
+  border-radius: 3px;
+}
+
+/* Selection with dynamic accent color */
+::selection {
+  background-color: var(--accent-color);
+  color: white;
+}
+
+/* Dynamic accent color utility classes */
+.text-accent {
+  color: var(--accent-color);
+}
+
+.bg-accent {
+  background-color: var(--accent-color);
+}
+
+.border-accent {
+  border-color: var(--accent-color);
+}
+
+.focus\:border-accent:focus {
+  border-color: var(--accent-color);
+}
+
+/* Group hover for accent color */
+.group:hover .group-hover\:text-accent {
+  color: var(--accent-color);
+}
