@@ -12,13 +12,9 @@ export default defineConfig({
     },
   },
   build: {
-    // Optimize for Raspberry Pi 5
     target: 'es2020',
-    minify: 'terser',
-    // Reduce chunk size warnings
     chunkSizeWarningLimit: 1000,
   },
-  // Optimize dev server for low-resource environments
   server: {
     hmr: {
       overlay: false,

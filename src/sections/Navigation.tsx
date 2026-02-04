@@ -7,15 +7,16 @@ const navLinks = [
   { label: 'Home', href: '/' },
   { label: 'Machines', href: '/machines' },
   { label: 'Tutorials', href: '/tutorials' },
+  { label: 'Team', href: '/team' },
 ];
 
 export default function Navigation() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const [isColorPickerOpen, setIsColorPickerOpen] = useState(false);
-  const colorPickerRef = useRef<HTMLDivElement>(null);
+  const [showColorPicker, setShowColorPicker] = useState(false);
   const location = useLocation();
   const { accentColor, setAccentColor } = useColor();
+  const pickerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -28,25 +29,25 @@ export default function Navigation() {
 
   // Close color picker when clicking outside
   useEffect(() => {
-    const handleClickOutside = (event: MouseEvent) => {
-      if (colorPickerRef.current && !colorPickerRef.current.contains(event.target as Node)) {
-        setIsColorPickerOpen(false);
+    function handleClickOutside(event: MouseEvent) {
+      if (pickerRef.current && !pickerRef.current.contains(event.target as Node)) {
+        setShowColorPicker(false);
       }
-    };
+    }
 
-    if (isColorPickerOpen) {
+    if (showColorPicker) {
       document.addEventListener('mousedown', handleClickOutside);
       return () => document.removeEventListener('mousedown', handleClickOutside);
     }
-  }, [isColorPickerOpen]);
+  }, [showColorPicker]);
 
   const isActive = (href: string) => {
     return location.pathname === href;
   };
 
-  const handleColorSelect = (color: string) => {
+  const handleColorClick = (color: string) => {
     setAccentColor(color);
-    setIsColorPickerOpen(false);
+    setShowColorPicker(false);
   };
 
   return (
@@ -85,11 +86,11 @@ export default function Navigation() {
             ))}
 
             {/* Color Picker */}
-            <div className="relative ml-4" ref={colorPickerRef}>
+            <div className="relative ml-4" ref={pickerRef}>
               <button
-                onClick={() => setIsColorPickerOpen(!isColorPickerOpen)}
+                onClick={() => setShowColorPicker(!showColorPicker)}
                 className="flex items-center gap-2 px-3 py-2 rounded-full bg-[#1a1a1a] hover:bg-[#222] transition-colors"
-                title="Change accent color"
+                type="button"
               >
                 <Palette className="w-4 h-4 text-[#A6A6A6]" />
                 <span
@@ -98,9 +99,8 @@ export default function Navigation() {
                 />
               </button>
 
-              {/* Color Picker Dropdown */}
-              {isColorPickerOpen && (
-                <div className="absolute right-0 top-full mt-2 p-3 bg-[#1a1a1a] border border-[#333] rounded-lg shadow-xl z-50 min-w-[160px]">
+              {showColorPicker && (
+                <div className="absolute right-0 top-full mt-2 p-3 bg-[#1a1a1a] border border-[#333] rounded-lg shadow-xl min-w-[160px]">
                   <p className="font-mono text-[10px] uppercase tracking-[0.12em] text-[#6A6A6A] mb-3">
                     Accent Color
                   </p>
@@ -108,13 +108,13 @@ export default function Navigation() {
                     {accentColors.map((color) => (
                       <button
                         key={color.value}
-                        onClick={() => handleColorSelect(color.value)}
-                        className={`w-8 h-8 rounded-full transition-all hover:scale-110 ${
-                          accentColor === color.value ? 'ring-2 ring-white scale-110' : ''
+                        onClick={() => handleColorClick(color.value)}
+                        className={`w-8 h-8 rounded-full transition-transform hover:scale-110 ${
+                          accentColor === color.value ? 'ring-2 ring-white' : ''
                         }`}
                         style={{ backgroundColor: color.value }}
                         title={color.name}
-                        aria-label={`Select ${color.name} color`}
+                        type="button"
                       />
                     ))}
                   </div>
@@ -126,10 +126,11 @@ export default function Navigation() {
           {/* Mobile Menu Button */}
           <div className="flex items-center gap-3 md:hidden">
             {/* Mobile Color Picker */}
-            <div className="relative" ref={colorPickerRef}>
+            <div className="relative" ref={pickerRef}>
               <button
-                onClick={() => setIsColorPickerOpen(!isColorPickerOpen)}
+                onClick={() => setShowColorPicker(!showColorPicker)}
                 className="flex items-center gap-2 p-2"
+                type="button"
               >
                 <Palette className="w-5 h-5 text-[#A6A6A6]" />
                 <span
@@ -138,17 +139,18 @@ export default function Navigation() {
                 />
               </button>
 
-              {isColorPickerOpen && (
-                <div className="absolute right-0 top-full mt-2 p-3 bg-[#1a1a1a] border border-[#333] rounded-lg shadow-xl z-50">
+              {showColorPicker && (
+                <div className="absolute right-0 top-full mt-2 p-3 bg-[#1a1a1a] border border-[#333] rounded-lg shadow-xl">
                   <div className="grid grid-cols-4 gap-2">
                     {accentColors.map((color) => (
                       <button
                         key={color.value}
-                        onClick={() => handleColorSelect(color.value)}
+                        onClick={() => handleColorClick(color.value)}
                         className={`w-8 h-8 rounded-full ${
                           accentColor === color.value ? 'ring-2 ring-white' : ''
                         }`}
                         style={{ backgroundColor: color.value }}
+                        type="button"
                       />
                     ))}
                   </div>
@@ -159,6 +161,7 @@ export default function Navigation() {
             <button
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
               className="text-[#F6F6F6] p-2"
+              type="button"
             >
               {isMobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
             </button>

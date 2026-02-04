@@ -6,6 +6,7 @@ import Navigation from './sections/Navigation';
 import HomePage from './pages/HomePage';
 import MachinesPage from './pages/MachinesPage';
 import TutorialsPage from './pages/TutorialsPage';
+import TeamPage from './pages/TeamPage';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -34,6 +35,7 @@ function App() {
           <Route path="/" element={<HomePage />} />
           <Route path="/machines" element={<MachinesPage />} />
           <Route path="/tutorials" element={<TutorialsPage />} />
+          <Route path="/team" element={<TeamPage />} />
         </Routes>
       </main>
     </div>
