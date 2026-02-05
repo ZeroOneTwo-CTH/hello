@@ -204,7 +204,7 @@ export default function HeroSection() {
         className="absolute left-[64vw] top-[60vh] w-[30vw] h-[30vh] image-frame overflow-hidden"
       >
         <img src={heroImage}
-          src="./hero_object_closeup.jpg"
+          /*src="./hero_object_closeup.jpg"*/
           alt="Workshop object"
           className="w-full h-full object-cover"
           loading="eager"
