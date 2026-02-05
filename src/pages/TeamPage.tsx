@@ -3,10 +3,12 @@ import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { Mail } from 'lucide-react';
 import { useColor } from '../context/ColorContext';
+
+ // Import all images as modules
 import teamClive from "../assets/team-clive.jpg";
-/*import teamLinda from "../assets/team-linda.jpg";
+import teamLinda from "../assets/team-linda.jpg";
 import teamGary from "../assets/team-gary.jpg";
-import teamCallum from "../assets/team-callum.jpg";*/
+import teamCallum from "../assets/team-callum.jpg";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -27,7 +29,7 @@ const teamMembers: TeamMember[] = [
     jobTitle: 'Senior Technician',
     bio: 'Clive oversees workshop operations and safety protocols, bringing extensive experience in electronics and digital fabrication. As Laser Safety Officer, he ensures all equipment is maintained to the highest standards and mentors students through complex projects.',
     skills: ['Workshop Management', 'Electronics', 'Creative Coding', 'Microcontrollers', '3D Printing & Scanning', 'Laser Safety Officer'],
-    image: 'teamClive',
+    image: teamClive,
     email: 'clive@zeroonetwo.ac.uk',
   },
   {
@@ -36,7 +38,7 @@ const teamMembers: TeamMember[] = [
     jobTitle: 'Scientific Officer',
     bio: 'Linda leads technical research initiatives at the intersection of fashion and technology. Her expertise spans traditional textile craft and cutting-edge digital fabrication, supporting innovative projects in wearable technology and smart materials.',
     skills: ['Technical Led Research', 'Fashion', 'Embroidery', 'Digital Loom', 'Digital Fashion'],
-    image: '../assets/team-linda.jpg',
+    image: teamLinda,
     email: 'linda@zeroonetwo.ac.uk',
   },
   {
@@ -45,7 +47,7 @@ const teamMembers: TeamMember[] = [
     jobTitle: 'Senior Technician',
     bio: 'Gary specializes in animation, software development, and immersive technologies. He manages the high-performance computing resources and VR equipment, helping students realise ambitious digital projects from concept to completion.',
     skills: ['Animation', 'Software', 'High Powered PCs', 'VR', 'Digital Fashion'],
-    image: '../assets/team-gary.jpg',
+    image: teamGary,
     email: 'gary@zeroonetwo.ac.uk',
   },
   {
@@ -54,7 +56,7 @@ const teamMembers: TeamMember[] = [
     jobTitle: 'Technician',
     bio: 'Callum brings hands-on expertise in 3D printing, metalwork, and jewellery-making. As Laser Safety Officer, he ensures safe operation of the metal laser etcher while supporting students in precision manufacturing and silversmithing projects.',
     skills: ['3D Printers', 'Metal Laser Etcher', 'Metalwork', 'Silversmithing', 'Laser Safety Officer'],
-    image: '../assets/team-callum.jpg',
+    image: teamCallum,
     email: 'callum@zeroonetwo.ac.uk',
   },
 ];
