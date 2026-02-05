@@ -103,7 +103,7 @@ const machinesData: Machine[] = [
     status: 'available',
     specs: ['Build Volume: 254×254×254mm', 'Materials: ABS, TPU', 'Chemical-Soluble Support Material'],
     resources: [
-      { type: 'guide', title: 'F170 Setup Guide', url: '#' },
+      //{ type: 'guide', title: 'F170 Setup Guide', url: '#' },
       //{ type: 'video', title: 'Support Material Removal', url: '#' },
       { type: 'documentation', title: '3D Printing Guidelines', url: '#' },
     ],
@@ -216,8 +216,8 @@ const machinesData: Machine[] = [
     status: 'available',
     specs: ['Dedicated GPUs', '16GB+ RAM', 'SSD Storage', 'Available for Loan', 'Software: Fusion 360, SolidWorks, Adobe CC, Arduino IDE, Optitex, SketchUp'],
     resources: [
-      { type: 'guide', title: 'Laptop Loan Policy', url: '#' },
-      { type: 'documentation', title: 'Software Installation', url: '#' },
+     // { type: 'guide', title: 'Laptop Loan Policy', url: '#' },
+      //{ type: 'documentation', title: 'Software Installation', url: '#' },
     ],
   },
   // ELECTRONICS
@@ -641,12 +641,12 @@ export default function MachinesPage() {
                     </div>
 
                     {machine.inductionRequired && (
-                      <button 
+                     /* <button 
                         className="w-full mt-4 py-3 px-6 rounded-full font-mono text-xs uppercase tracking-[0.12em] text-white transition-opacity hover:opacity-90"
                         style={{ backgroundColor: accentColor }}
                       >
                         Book Induction
-                      </button>
+                      </button> */
                     )}
                   </div>
                 </div>
