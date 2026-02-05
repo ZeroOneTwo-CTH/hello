@@ -4,6 +4,7 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { BookOpen, Cpu, Printer, Play } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { useColor } from '../context/ColorContext';
+import heroImage from "../assets/hero_object_closeup.jpg";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -202,7 +203,7 @@ export default function HeroSection() {
         ref={bottomRightImageRef}
         className="absolute left-[64vw] top-[60vh] w-[30vw] h-[30vh] image-frame overflow-hidden"
       >
-        <img
+        <img src={heroImage}
           src="./hero_object_closeup.jpg"
           alt="Workshop object"
           className="w-full h-full object-cover"
