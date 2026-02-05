@@ -181,7 +181,7 @@ const machinesData: Machine[] = [
     quantity: '1 unit',
     icon: <Zap className="w-6 h-6" />,
     inductionRequired: true,
-    status: 'unavailable',
+    status: 'maintenance',
     specs: ['Work Area: 300×200×65mm', 'Spindle: 300W', 'Materials: Wood, Acrylic, PCB, Soft Metals'],
     resources: [
      // { type: 'guide', title: 'CNC Safety & Setup', url: '#' },
