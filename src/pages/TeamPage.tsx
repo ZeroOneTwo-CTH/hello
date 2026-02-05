@@ -3,8 +3,8 @@ import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { Mail } from 'lucide-react';
 import { useColor } from '../context/ColorContext';
-/*import teamClive from "../assets/team-clive.jpg";
-import teamLinda from "../assets/team-linda.jpg";
+import teamClive from "../assets/team-clive.jpg";
+/*import teamLinda from "../assets/team-linda.jpg";
 import teamGary from "../assets/team-gary.jpg";
 import teamCallum from "../assets/team-callum.jpg";*/
 
@@ -27,7 +27,7 @@ const teamMembers: TeamMember[] = [
     jobTitle: 'Senior Technician',
     bio: 'Clive oversees workshop operations and safety protocols, bringing extensive experience in electronics and digital fabrication. As Laser Safety Officer, he ensures all equipment is maintained to the highest standards and mentors students through complex projects.',
     skills: ['Workshop Management', 'Electronics', 'Creative Coding', 'Microcontrollers', '3D Printing & Scanning', 'Laser Safety Officer'],
-    image: '../assets/team-clive.jpg',
+    image: 'teamClive',
     email: 'clive@zeroonetwo.ac.uk',
   },
   {
