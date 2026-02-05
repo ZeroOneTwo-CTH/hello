@@ -27,7 +27,7 @@ const teamMembers: TeamMember[] = [
     id: 'clive',
     name: 'Clive',
     jobTitle: 'Senior Technician',
-    bio: 'Clive oversees workshop operations and safety protocols, bringing extensive experience in electronics and digital fabrication. As Laser Safety Officer, he ensures all equipment is maintained to the highest standards and mentors students through complex projects.',
+    bio: 'Clive oversees workshop operations and safety protocols, bringing experience in electronics and digital fabrication. As Laser Safety Officer, he ensures all equipment is maintained to the highest standards and mentors students through complex projects.',
     skills: ['Workshop Management', 'Electronics', 'Creative Coding', 'Microcontrollers', '3D Printing & Scanning', 'Laser Safety Officer'],
     image: teamClive,
     email: 'clive@zeroonetwo.ac.uk',
@@ -213,7 +213,7 @@ export default function TeamPage() {
               </div>
               <div className="px-4 py-2 bg-[#1a1a1a]">
                 <span className="font-mono text-xs text-[#6A6A6A] uppercase tracking-wider block mb-1">Location</span>
-                <span className="text-[#F6F6F6] text-sm">University Workshop</span>
+                <span className="text-[#F6F6F6] text-sm">012, CCE2, Northumbria University</span>
               </div>
             </div>
           </div>
