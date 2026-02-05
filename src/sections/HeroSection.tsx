@@ -1,7 +1,7 @@
-import { useRef, useLayoutEffect } from 'react';
+import { useRef, useLayoutEffect, useState } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { BookOpen, Cpu, Printer, Play } from 'lucide-react';
+import { BookOpen, Cpu, Printer, Play, Pause } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { useColor } from '../context/ColorContext';
 import heroImage from "../assets/hero_object_closeup.jpg";
@@ -18,9 +18,8 @@ export default function HeroSection() {
   const headlineRef = useRef<HTMLHeadingElement>(null);
   const sublineRef = useRef<HTMLParagraphElement>(null);
   const quickLinksRef = useRef<HTMLDivElement>(null);
-  const { accentColor } = useColor();
   const videoRef = useRef<HTMLVideoElement>(null);
-
+  
   const [isPlaying, setIsPlaying] = useState(false);
   const { accentColor } = useColor();
 
@@ -79,7 +78,6 @@ export default function HeroSection() {
           0.65
         );
 
-      // Scroll-driven exit animation
       const scrollTl = gsap.timeline({
         scrollTrigger: {
           trigger: section,
@@ -95,7 +93,6 @@ export default function HeroSection() {
         }
       });
 
-      // EXIT phase (70% - 100%)
       scrollTl
         .fromTo(topLeftRef.current,
           { x: 0, opacity: 1 },
@@ -125,30 +122,25 @@ export default function HeroSection() {
 
   return (
     <section ref={sectionRef} className="section-pinned bg-[#0B0B0C] z-10">
-      {/* Micro label */}
       <span className="absolute left-[6vw] top-[6vh] font-mono text-xs uppercase tracking-[0.12em] text-[#A6A6A6]">
         Northumbria University Creative Technology Workshop
       </span>
 
-       {/* Top-left VIDEO CONTAINER */}
       <div
         ref={topLeftRef}
         onClick={toggleVideo}
         className="absolute left-[6vw] top-[10vh] w-[62vw] h-[46vh] image-frame overflow-hidden bg-[#1a1a1a] flex items-center justify-center group cursor-pointer"
       >
-        {/* The Actual Video */}
         <video
           ref={videoRef}
           src={identVideo}
           className="absolute inset-0 w-full h-full object-cover"
-          autoPlay
           loop
           muted
           playsInline
           preload="metadata"
         />
         
-        {/* Play/Pause Overlay - shows when paused */}
         {!isPlaying && (
           <div className="absolute inset-0 flex flex-col items-center justify-center bg-black/30 transition-colors group-hover:bg-black/40 z-10">
             <div 
@@ -163,7 +155,6 @@ export default function HeroSection() {
           </div>
         )}
 
-        {/* Pause indicator - shows when playing (subtle) */}
         {isPlaying && (
           <div className="absolute bottom-4 right-4 z-10 opacity-0 group-hover:opacity-100 transition-opacity">
             <div className="w-10 h-10 rounded-full bg-black/50 flex items-center justify-center">
@@ -173,7 +164,6 @@ export default function HeroSection() {
         )}
       </div>
 
-      {/* Right accent panel */}
       <div
         ref={rightPanelRef}
         className="absolute left-[71vw] top-[10vh] w-[23vw] h-[46vh] bg-accent flex items-center justify-center"
@@ -184,7 +174,6 @@ export default function HeroSection() {
         </span>
       </div>
 
-      {/* Bottom-left headline block */}
       <div
         ref={bottomLeftBlockRef}
         className="absolute left-[6vw] top-[60vh] w-[56vw] h-[30vh] bg-[#0B0B0C] flex flex-col justify-center px-[3vw]"
@@ -203,7 +192,6 @@ export default function HeroSection() {
           Learn, build, and bring your ideas to life.
         </p>
 
-        {/* Quick Links */}
         <div ref={quickLinksRef} className="mt-6 flex flex-wrap gap-3">
           <Link
             to="/machines"
@@ -229,13 +217,12 @@ export default function HeroSection() {
         </div>
       </div>
 
-      {/* Bottom-right image window */}
       <div
         ref={bottomRightImageRef}
         className="absolute left-[64vw] top-[60vh] w-[30vw] h-[30vh] image-frame overflow-hidden"
       >
-        <img src={heroImage}
-          /*src="./hero_object_closeup.jpg"*/
+        <img 
+          src={heroImage}
           alt="Workshop object"
           className="w-full h-full object-cover"
           loading="eager"
