@@ -3,10 +3,10 @@ import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { Mail } from 'lucide-react';
 import { useColor } from '../context/ColorContext';
-import teamClive from "../assets/team-clive.jpg";
+/*import teamClive from "../assets/team-clive.jpg";
 import teamLinda from "../assets/team-linda.jpg";
 import teamGary from "../assets/team-gary.jpg";
-import teamCallum from "../assets/team-callum.jpg";
+import teamCallum from "../assets/team-callum.jpg";*/
 
 gsap.registerPlugin(ScrollTrigger);
 
