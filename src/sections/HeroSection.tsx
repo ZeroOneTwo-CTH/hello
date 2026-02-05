@@ -5,6 +5,7 @@ import { BookOpen, Cpu, Printer, Play } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { useColor } from '../context/ColorContext';
 import heroImage from "../assets/hero_object_closeup.jpg";
+import identVideo from "../assets/012ident.mp4";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -18,6 +19,21 @@ export default function HeroSection() {
   const sublineRef = useRef<HTMLParagraphElement>(null);
   const quickLinksRef = useRef<HTMLDivElement>(null);
   const { accentColor } = useColor();
+  const videoRef = useRef<HTMLVideoElement>(null);
+
+  const [isPlaying, setIsPlaying] = useState(false);
+  const { accentColor } = useColor();
+
+  const toggleVideo = () => {
+    if (!videoRef.current) return;
+    
+    if (isPlaying) {
+      videoRef.current.pause();
+    } else {
+      videoRef.current.play();
+    }
+    setIsPlaying(!isPlaying);
+  };
 
   useLayoutEffect(() => {
     const section = sectionRef.current;
@@ -111,35 +127,50 @@ export default function HeroSection() {
     <section ref={sectionRef} className="section-pinned bg-[#0B0B0C] z-10">
       {/* Micro label */}
       <span className="absolute left-[6vw] top-[6vh] font-mono text-xs uppercase tracking-[0.12em] text-[#A6A6A6]">
-        University Creative Technology Workshop
+        Northumbria University Creative Technology Workshop
       </span>
 
-      {/* Top-left video placeholder */}
+       {/* Top-left VIDEO CONTAINER */}
       <div
         ref={topLeftRef}
+        onClick={toggleVideo}
         className="absolute left-[6vw] top-[10vh] w-[62vw] h-[46vh] image-frame overflow-hidden bg-[#1a1a1a] flex items-center justify-center group cursor-pointer"
       >
-        {/* Video placeholder content */}
-        <div className="absolute inset-0 bg-gradient-to-br from-[#1a1a1a] to-[#0a0a0a]" />
+        {/* The Actual Video */}
+        <video
+          ref={videoRef}
+          src={identVideo}
+          className="absolute inset-0 w-full h-full object-cover"
+          autoPlay
+          loop
+          muted
+          playsInline
+          preload="metadata"
+        />
         
-        {/* Play button overlay */}
-        <div className="relative z-10 flex flex-col items-center">
-          <div 
-            className="w-16 h-16 md:w-20 md:h-20 rounded-full flex items-center justify-center mb-4 transition-transform group-hover:scale-110"
-            style={{ backgroundColor: accentColor }}
-          >
-            <Play className="w-6 h-6 md:w-8 md:h-8 text-white ml-1" fill="white" />
+        {/* Play/Pause Overlay - shows when paused */}
+        {!isPlaying && (
+          <div className="absolute inset-0 flex flex-col items-center justify-center bg-black/30 transition-colors group-hover:bg-black/40 z-10">
+            <div 
+              className="w-16 h-16 md:w-20 md:h-20 rounded-full flex items-center justify-center mb-4 transition-transform group-hover:scale-110"
+              style={{ backgroundColor: accentColor }}
+            >
+              <Play className="w-6 h-6 md:w-8 md:h-8 text-white ml-1" fill="white" />
+            </div>
+            <span className="font-mono text-xs uppercase tracking-[0.12em] text-white">
+              Watch Intro Video
+            </span>
           </div>
-          <span className="font-mono text-xs uppercase tracking-[0.12em] text-[#6A6A6A]">
-            Watch Intro Video
-          </span>
-        </div>
+        )}
 
-        {/* Decorative elements */}
-        <div className="absolute inset-0 opacity-10">
-          <div className="absolute top-1/4 left-1/4 w-32 h-32 border border-white/20 rounded-full" />
-          <div className="absolute bottom-1/4 right-1/4 w-48 h-48 border border-white/10 rounded-full" />
-        </div>
+        {/* Pause indicator - shows when playing (subtle) */}
+        {isPlaying && (
+          <div className="absolute bottom-4 right-4 z-10 opacity-0 group-hover:opacity-100 transition-opacity">
+            <div className="w-10 h-10 rounded-full bg-black/50 flex items-center justify-center">
+              <Pause className="w-4 h-4 text-white" fill="white" />
+            </div>
+          </div>
+        )}
       </div>
 
       {/* Right accent panel */}
