@@ -646,8 +646,8 @@ export default function MachinesPage() {
                         style={{ backgroundColor: accentColor }}
                       >
                         Book Induction
-                      </button> */
-                    )}
+                      </button> 
+                    )*/}
                   </div>
                 </div>
               );
