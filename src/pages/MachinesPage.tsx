@@ -640,8 +640,8 @@ export default function MachinesPage() {
                       })}
                     </div>
 
-                    {machine.inductionRequired && (
-                     /* <button 
+                    {machine.inductionRequired /* && (
+                      <button 
                         className="w-full mt-4 py-3 px-6 rounded-full font-mono text-xs uppercase tracking-[0.12em] text-white transition-opacity hover:opacity-90"
                         style={{ backgroundColor: accentColor }}
                       >
