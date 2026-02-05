@@ -5,7 +5,7 @@ import { BookOpen, Cpu, Printer, Play, Pause } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { useColor } from '../context/ColorContext';
 import heroImage from "../assets/hero_object_closeup.jpg";
-import identVideo from "../assets/012ident.mp4";
+import identVideo from "../assets/012Ident.mp4";
 
 gsap.registerPlugin(ScrollTrigger);
 
