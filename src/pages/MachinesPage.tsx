@@ -214,7 +214,7 @@ const machinesData: Machine[] = [
     icon: <Laptop className="w-6 h-6" />,
     inductionRequired: false,
     status: 'available',
-    specs: ['Dedicated GPUs', '16GB+ RAM', 'SSD Storage', 'Available for Loan', Software: Fusion 360, SolidWorks, Adobe CC, Arduino IDE, Optitex, SketchUp],
+    specs: ['Dedicated GPUs', '16GB+ RAM', 'SSD Storage', 'Available for Loan', 'Software: Fusion 360, SolidWorks, Adobe CC, Arduino IDE, Optitex, SketchUp'],
     resources: [
       { type: 'guide', title: 'Laptop Loan Policy', url: '#' },
       { type: 'documentation', title: 'Software Installation', url: '#' },
