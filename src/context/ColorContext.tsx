@@ -1,7 +1,7 @@
-import { createContext, useContext, useState, useEffect, ReactNode } from 'react';
+import { createContext, useContext, useState, useEffect, type ReactNode } from 'react';
 
 export const accentColors = [
-  { name: 'Coral', value: '#FF6B4A' },    // Better contrast than #FF4D2E
+  { name: 'Coral', value: '#FF6B4A' },
   { name: 'Blue', value: '#4A9EFF' },
   { name: 'Green', value: '#4AFF6B' },
   { name: 'Purple', value: '#9E4AFF' },
@@ -20,7 +20,6 @@ const ColorContext = createContext<ColorContextType | undefined>(undefined);
 
 export function ColorProvider({ children }: { children: ReactNode }) {
   const [accentColor, setAccentColor] = useState(() => {
-    // Load from localStorage on init
     if (typeof window !== 'undefined') {
       return localStorage.getItem('accentColor') || '#FF6B4A';
     }
@@ -28,13 +27,11 @@ export function ColorProvider({ children }: { children: ReactNode }) {
   });
 
   useEffect(() => {
-    // Update CSS variable when color changes
     document.documentElement.style.setProperty('--accent-color', accentColor);
     document.documentElement.style.setProperty('--accent-color-dark', adjustBrightness(accentColor, -20));
     localStorage.setItem('accentColor', accentColor);
   }, [accentColor]);
 
-  // Helper to darken color for hover states
   const adjustBrightness = (hex: string, percent: number) => {
     const num = parseInt(hex.replace("#", ""), 16);
     const amt = Math.round(2.55 * percent);
