@@ -45,7 +45,7 @@ const teamMembers: TeamMember[] = [
     id: 'gary',
     name: 'Gary',
     jobTitle: 'Senior Technician',
-    bio: 'Gary specializes in animation, software development, and immersive technologies. He manages the high-performance computing resources and VR equipment, helping students realise ambitious digital projects from concept to completion.',
+    bio: 'Gary specialises in animation, software development, and immersive technologies. He manages the high-performance computing resources and VR equipment, helping students realise ambitious digital projects from concept to completion.',
     skills: ['Animation', 'Software', 'High Powered PCs', 'VR', 'Digital Fashion'],
     image: teamGary,
     email: 'gary@zeroonetwo.ac.uk',
@@ -114,7 +114,7 @@ export default function TeamPage() {
             Meet the Team
           </span>
           <h1 className="font-display text-[clamp(36px,5vw,72px)] font-bold tracking-[-0.03em] text-[#F6F6F6] mb-4">
-            ZERO.ONE.TWO Staff
+            Zero.One.Two Staff
           </h1>
           <p className="text-[clamp(14px,1.2vw,18px)] text-[#A6A6A6] max-w-2xl leading-relaxed">
             Our experienced technicians and officers are here to help you bring your ideas to life. 
