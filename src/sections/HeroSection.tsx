@@ -38,7 +38,33 @@ export default function HeroSection() {
     const section = sectionRef.current;
     if (!section) return;
 
-    const ctx = gsap.context(() => {
+    // Ensure content is visible immediately as a fallback
+    const ensureVisibility = () => {
+      const elements = [
+        topLeftRef.current,
+        rightPanelRef.current, 
+        bottomLeftBlockRef.current,
+        bottomRightImageRef.current,
+        headlineRef.current,
+        sublineRef.current,
+        quickLinksRef.current
+      ];
+      
+      elements.forEach(el => {
+        if (el) {
+          el.style.opacity = '1';
+          el.style.visibility = 'visible';
+          el.style.transform = 'none';
+        }
+      });
+    };
+
+    // Set initial visible state immediately
+    ensureVisibility();
+
+    // Try to initialize GSAP animations
+    try {
+      const ctx = gsap.context(() => {
       const loadTl = gsap.timeline({ defaults: { ease: 'power3.out' } });
 
       loadTl
@@ -115,9 +141,12 @@ export default function HeroSection() {
           0.70
         );
 
-    }, section);
+      }, section);
 
-    return () => ctx.revert();
+      return () => ctx.revert();
+    } catch (error) {
+      console.warn('GSAP initialization failed, using fallback:', error);
+    }
   }, []);
 
   return (
@@ -129,7 +158,8 @@ export default function HeroSection() {
       <div
         ref={topLeftRef}
         onClick={toggleVideo}
-        className="absolute left-[6vw] top-[10vh] w-[62vw] h-[46vh] image-frame overflow-hidden bg-[#1a1a1a] flex items-center justify-center group cursor-pointer"
+        className="absolute left-[6vw] top-[10vh] w-[62vw] h-[46vh] image-frame overflow-hidden bg-[#1a1a1a] flex items-center justify-center group cursor-pointer opacity-100"
+        style={{ visibility: 'visible' }}
       >
         <video
           ref={videoRef}
@@ -139,6 +169,11 @@ export default function HeroSection() {
           muted
           playsInline
           preload="metadata"
+          onError={(e) => {
+            console.warn('Video failed to load:', identVideo);
+            // Hide video container if it fails to load
+            e.currentTarget.style.display = 'none';
+          }}
         />
         
         {!isPlaying && (
@@ -166,8 +201,8 @@ export default function HeroSection() {
 
       <div
         ref={rightPanelRef}
-        className="absolute left-[71vw] top-[10vh] w-[23vw] h-[46vh] bg-accent flex items-center justify-center"
-        style={{ backgroundColor: accentColor }}
+        className="absolute left-[71vw] top-[10vh] w-[23vw] h-[46vh] bg-accent flex items-center justify-center opacity-100"
+        style={{ backgroundColor: accentColor, visibility: 'visible' }}
       >
         <span className="font-display text-6xl font-bold text-white/20">
           012
@@ -176,7 +211,8 @@ export default function HeroSection() {
 
       <div
         ref={bottomLeftBlockRef}
-        className="absolute left-[6vw] top-[60vh] w-[56vw] h-[30vh] bg-[#0B0B0C] flex flex-col justify-center px-[3vw]"
+        className="absolute left-[6vw] top-[60vh] w-[56vw] h-[30vh] bg-[#0B0B0C] flex flex-col justify-center px-[3vw] opacity-100"
+        style={{ visibility: 'visible' }}
       >
         <h1
           ref={headlineRef}
@@ -219,14 +255,20 @@ export default function HeroSection() {
 
       <div
         ref={bottomRightImageRef}
-        className="absolute left-[64vw] top-[60vh] w-[30vw] h-[30vh] image-frame overflow-hidden"
+        className="absolute left-[64vw] top-[60vh] w-[30vw] h-[30vh] image-frame overflow-hidden opacity-100"
+        style={{ visibility: 'visible' }}
       >
-        <img 
-          src={heroImage}
-          alt="Workshop object"
-          className="w-full h-full object-cover"
-          loading="eager"
-        />
+         <img 
+           src={heroImage}
+           alt="Workshop object"
+           className="w-full h-full object-cover"
+           loading="eager"
+           onError={(e) => {
+             console.warn('Image failed to load:', heroImage);
+             // Add fallback background if image fails
+             e.currentTarget.style.backgroundColor = '#1a1a1a';
+           }}
+         />
       </div>
     </section>
   );
