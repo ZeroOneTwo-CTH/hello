@@ -1,7 +1,7 @@
-import { useRef, useLayoutEffect, useState } from 'react';
+import { useRef, useLayoutEffect } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { BookOpen, Cpu, Printer, Play, Pause } from 'lucide-react';
+import { BookOpen, Cpu, Printer } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { useColor } from '../context/ColorContext';
 import heroImage from "../assets/hero_object_closeup.jpg";
@@ -20,19 +20,7 @@ export default function HeroSection() {
   const quickLinksRef = useRef<HTMLDivElement>(null);
   const videoRef = useRef<HTMLVideoElement>(null);
   
-  const [isPlaying, setIsPlaying] = useState(false);
   const { accentColor } = useColor();
-
-  const toggleVideo = () => {
-    if (!videoRef.current) return;
-    
-    if (isPlaying) {
-      videoRef.current.pause();
-    } else {
-      videoRef.current.play();
-    }
-    setIsPlaying(!isPlaying);
-  };
 
   useLayoutEffect(() => {
     const section = sectionRef.current;
@@ -61,6 +49,18 @@ export default function HeroSection() {
 
     // Set initial visible state immediately
     ensureVisibility();
+
+    // Autoplay video after component mounts
+    const playVideo = () => {
+      if (videoRef.current) {
+        videoRef.current.play().catch(error => {
+          console.warn('Autoplay failed:', error);
+        });
+      }
+    };
+
+    // Try to play video immediately
+    playVideo();
 
     // Try to initialize GSAP animations
     try {
@@ -157,8 +157,7 @@ export default function HeroSection() {
 
       <div
         ref={topLeftRef}
-        onClick={toggleVideo}
-        className="absolute left-[6vw] top-[10vh] w-[62vw] h-[46vh] image-frame overflow-hidden bg-[#1a1a1a] flex items-center justify-center group cursor-pointer opacity-100"
+        className="absolute left-[6vw] top-[10vh] w-[62vw] h-[46vh] image-frame overflow-hidden bg-[#1a1a1a] opacity-100"
         style={{ visibility: 'visible' }}
       >
         <video
@@ -168,35 +167,14 @@ export default function HeroSection() {
           loop
           muted
           playsInline
-          preload="metadata"
+          autoPlay
+          preload="auto"
           onError={(e) => {
             console.warn('Video failed to load:', identVideo);
             // Hide video container if it fails to load
             e.currentTarget.style.display = 'none';
           }}
         />
-        
-        {!isPlaying && (
-          <div className="absolute inset-0 flex flex-col items-center justify-center bg-black/30 transition-colors group-hover:bg-black/40 z-10">
-            <div 
-              className="w-16 h-16 md:w-20 md:h-20 rounded-full flex items-center justify-center mb-4 transition-transform group-hover:scale-110"
-              style={{ backgroundColor: accentColor }}
-            >
-              <Play className="w-6 h-6 md:w-8 md:h-8 text-white ml-1" fill="white" />
-            </div>
-            <span className="font-mono text-xs uppercase tracking-[0.12em] text-white">
-              Watch Intro Video
-            </span>
-          </div>
-        )}
-
-        {isPlaying && (
-          <div className="absolute bottom-4 right-4 z-10 opacity-0 group-hover:opacity-100 transition-opacity">
-            <div className="w-10 h-10 rounded-full bg-black/50 flex items-center justify-center">
-              <Pause className="w-4 h-4 text-white" fill="white" />
-            </div>
-          </div>
-        )}
       </div>
 
       <div
