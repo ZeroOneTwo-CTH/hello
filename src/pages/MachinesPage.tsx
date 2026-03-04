@@ -133,11 +133,27 @@ const machinesData: Machine[] = [
     icon: <Scan className="w-6 h-6" />,
     inductionRequired: true,
     status: 'available',
-    specs: ['Accuracy: 0.2mm', 'Scan Speed: 18fps', 'Working Distance: 150-400mm', 'Small Object scanning', 'Face Scanning', 'Colour Scanning'],
+    specs: ['Accuracy: 0.2mm', 'Scan Speed: 18fps', 'Working Distance: 200-400mm', 'Small Object scanning', 'Face Scanning', 'Colour Scanning', 'Outdoor Scanning'],
     resources: [
       { type: 'guide', title: 'Inspire Quick Start', url: 'https://download.revopoint3d.com/wp-content/uploads/download/INSPIRE%20Quick%20Start%20Guide%20-%200911.pdf' },
       //{ type: 'video', title: 'Scanning Technique', url: '#' },
       { type: 'documentation', title: 'Revo Scan Software', url: 'https://www.revopoint3d.com/pages/support-download' },
+    ],
+  },
+{
+    id: 'revopoint-inspire-2',
+    name: 'Revopoint Inspire 2 3D Scanner',
+    category: '3D Scanning',
+    description: 'Handheld 3D scanner for quick digitisation of small to medium objects. Comes with Mobile kit.',
+    quantity: '1 unit',
+    icon: <Scan className="w-6 h-6" />,
+    inductionRequired: true,
+    status: 'available',
+    specs: ['Accuracy: Up to 0.05mm', 'Scan Speed: 18fps', 'Working Distance: 150-400mm', 'Small Object scanning', 'Face Scanning', 'Colour Scanning'],
+    resources: [
+      { type: 'guide', title: 'Inspire 2Quick Start', url: 'https://revopedia.revopoint3d.com/en/INSPIREseries/INSPIRE2UserManual' },
+      //{ type: 'video', title: 'Scanning Technique', url: '#' },
+      { type: 'documentation', title: 'Revo Metro Software', url: 'https://www.revopoint3d.com/pages/support-download' },
     ],
   },
   {
