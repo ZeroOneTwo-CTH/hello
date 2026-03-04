@@ -57,7 +57,7 @@ const machinesData: Machine[] = [
     resources: [
       { type: 'video', title: 'Bambu Studio Setup', url: 'https://www.youtube.com/watch?v=8TQCRVS72Us' },
       //{ type: 'video', title: 'First Print Tutorial', url: '#' },
-      { type: 'documentation', title: '3D Printing Guidelines', url: '/3d-print-request' },
+      { type: 'documentation', title: '3D Printing Guidelines', url: '/hello/3d-print-request' },
     ],
   },
   {
@@ -73,7 +73,7 @@ const machinesData: Machine[] = [
     resources: [
       { type: 'video', title: 'H2D Multi-Tool Overview', url: 'https://www.youtube.com/watch?v=idOY8ebZ25Q' },
       //{ type: 'video', title: 'Laser Engraving Basics', url: '#' },
-      { type: 'documentation', title: '3D Printing Guidelines', url: '/3d-print-request' },
+      { type: 'documentation', title: '3D Printing Guidelines', url: '/hello/3d-print-request' },
     ],
   },
   {
@@ -89,7 +89,7 @@ const machinesData: Machine[] = [
     resources: [
       { type: 'guide', title: 'Export 3mf from Keyshot', url: 'https://manual.keyshot.com/manual/models-tab/export/export-formats/' },
       //{ type: 'video', title: 'GrabCAD Print Workflow', url: '#' },
-      { type: 'documentation', title: '3D Printing Guidelines', url: '/3d-print-request' },
+      { type: 'documentation', title: '3D Printing Guidelines', url: '/hello/3d-print-request' },
     ],
   },
   {
@@ -105,7 +105,7 @@ const machinesData: Machine[] = [
     resources: [
       //{ type: 'guide', title: 'F170 Setup Guide', url: '#' },
       //{ type: 'video', title: 'Support Material Removal', url: '#' },
-      { type: 'documentation', title: '3D Printing Guidelines', url: '/3d-print-request' },
+      { type: 'documentation', title: '3D Printing Guidelines', url: '/hello/3d-print-request' },
     ],
   },
   {
