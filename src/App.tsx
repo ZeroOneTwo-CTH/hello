@@ -8,6 +8,7 @@ import MachinesPage from './pages/MachinesPage';
 import TutorialsPage from './pages/TutorialsPage';
 import TeamPage from './pages/TeamPage';
 import PrintingRequestPage from './pages/PrintingRequestPage';
+import SensorBuilderPage from './pages/SensorBuilderPage';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -38,6 +39,7 @@ function App() {
           <Route path="/tutorials" element={<TutorialsPage />} />
           <Route path="/team" element={<TeamPage />} />
           <Route path="/3d-print-request" element={<PrintingRequestPage />} />
+	<Route path="/sensor-builder" element={<SensorBuilderPage />} />
         </Routes>
       </main>
     </div>

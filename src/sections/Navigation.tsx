@@ -8,6 +8,7 @@ const navLinks = [
   { label: 'Home', href: '/' },
   { label: 'Machines', href: '/machines' },
   { label: 'Tutorials', href: '/tutorials' },
+  { label: 'Sensor Builder', href: '/sensor-builder' },
   { label: 'Team', href: '/team' },
   { label: '3D Print Request', href: '/3d-print-request' },
 ];
